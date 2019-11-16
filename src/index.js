@@ -219,7 +219,6 @@ function loadCanvas() {
 
   const currSize = localStorage.getItem('currSize');
   const currTool = localStorage.getItem('currTool');
-  console.log(currTool);
 
   showSize(currSize);
   showTool(currTool);
@@ -234,6 +233,7 @@ function loadCanvas() {
   // const imgData = new ImageData(Uint8ClampedArray.from(prevCanvas), 512, 512);
   // context.putImageData(imgData, 0, 0);
 }
+
 function grayScale() {
   const imageData = context.getImageData(0, 0, 512, 512);
   const dataSrc = imageData.data;
@@ -289,7 +289,10 @@ async function imageToCanvas(data) {
     }
   };
 }
-
+window.addEventListener('DOMContentLoaded', () => {
+  console.log(localStorage.getItem('currSize'));
+  console.log(localStorage.getItem('currTool'));
+});
 document.querySelector('.grayscale-btn').addEventListener('click', () => {
   if (count !== 0) {
     grayScale();
