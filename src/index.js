@@ -292,6 +292,16 @@ async function imageToCanvas(data) {
 window.addEventListener('DOMContentLoaded', () => {
   console.log(localStorage.getItem('currSize'));
   console.log(localStorage.getItem('currTool'));
+  console.log(localStorage.getItem('currColorOld'));
+  if (localStorage.getItem('currSize') === null) {
+    sizex4 = true;
+  }
+  if (localStorage.getItem('currTool') === null) {
+    pencil = true;
+  }
+  if (localStorage.getItem('currColorOld') === null) {
+    context.fillStyle = document.querySelector('.curr-color').style.background;
+  }
 });
 document.querySelector('.grayscale-btn').addEventListener('click', () => {
   if (count !== 0) {
