@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="" />
+    <title>Codejam - Image - Api</title>
+    <script
+      type="text/javascript"
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+    <script src="https://unpkg.com/netlify-auth-providers"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="lines"></div>
+      <h1 class="header-name">Codejam - Pallete</h1>
+      <p class="login-text"></p>
+      <div data-netlify-identity-button class="login-link"></div>
+      <div class="dots"></div>
+    </header>
+    <hr />
+
+    <section class="main">
+      <div class="main__instruments__container">
+        <div class="main__instruments__container-block1">
+          <ul class="main__instruments__container-block1__list">
+            <li class="list-item bucketBtn">
+              <button class="bucket-btn">
+                Paint Bucket
+              </button>
+            </li>
+            <li class="list-item chooseColorBtn">
+              <button class="choose-color-btn">
+                Choose color
+              </button>
+            </li>
+            <hr />
+            <li class="list-item pencil active">
+              <button class="pencil-btn">
+                <span class="pencil-text">
+                  Pencil
+                </span>
+              </button>
+            </li>
+            <li class="list-item">
+              <button class="transform-btn">
+                Transform
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="main__instruments__container-block2">
+          <ul class="main__instruments__container-block2__list">
+            <button class="current-btn">
+              <li class="list-item currentColor">
+                <span class="color-icon curr-color"></span>
+
+                <label for="current-color">
+                  <input type="color" id="current-color-picker" />
+                  Current color
+                </label>
+              </li>
+            </button>
+            <button class="button prev-btn">
+              <li class="list-item prevColor">
+                <span class="color-icon prev-color-btn"></span>
+
+                <label for="prev-color">
+                  Prev color
+                </label>
+              </li>
+            </button>
+            <hr />
+            <button class="button red-btn">
+              <li class="list-item">
+                <span class="color-icon red"></span>
+                <label for="red" id="red-btn">
+                  Red
+                </label>
+              </li>
+            </button>
+            <button class="button blue-btn">
+              <li class="list-item ">
+                <span class="color-icon blue"></span>
+                <label for="blue">
+                  Blue
+                </label>
+              </li>
+            </button>
+          </ul>
+        </div>
+      </div>
+      <div class="main__canvas">
+        <div class="input__container">
+          <button class="load-image-btn">LOAD</button>
+          <input type="text" id="input-field" />
+          <button class="grayscale-btn">B & W</button>
+        </div>
+        <canvas id="canvas" width="128" height="128"></canvas>
+      </div>
+
+      <div class="main__switcher">
+        <div class="small">
+          <button id="small-canvas" class="size-btn active">
+            128 x 128
+          </button>
+        </div>
+        <div class="medium">
+          <button id="medium-canvas" class="size-btn">
+            256 x 256
+          </button>
+        </div>
+        <div class="large">
+          <button id="large-canvas" class="size-btn">
+            512 x 512
+          </button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

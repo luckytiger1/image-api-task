@@ -1,0 +1,279 @@
+@import 'normalize.scss';
+@mixin logo {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+@mixin instrument {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.541327);
+}
+
+.header {
+  display: flex;
+  &-name {
+    @include logo();
+    padding-top: 5px;
+    margin: 0;
+    padding-left: 50px;
+    flex-grow: 1;
+  }
+  .login-link {
+    a {
+      display: block;
+      font-family: 'FuturaBookC';
+      font-size: 20px;
+      border: 2px solid #007a70;
+      border-radius: 4px;
+      background-color: #00ad9f;
+      color: white;
+      width: 100%;
+      padding: 6px 8px;
+      margin-right: 15px;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+  .dots:after {
+    content: '\2807';
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .dots {
+    padding-top: 5px;
+    margin-left: 50px;
+  }
+  .lines:after {
+    content: '\2261';
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .lines {
+    padding-top: 5px;
+    padding-left: 10px;
+  }
+}
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+  &__instruments__container {
+    display: flex;
+    flex-direction: column;
+    &-block1,
+    &-block2 {
+      position: relative;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24),
+        0px 0px 4px rgba(0, 0, 0, 0.12);
+      margin-bottom: 50%;
+      &__list {
+        width: 228px;
+        height: 246px;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 50px;
+        list-style: none;
+        input[type='color'] {
+          display: none;
+        }
+        .list-item {
+          @include instrument();
+          &:first-child {
+            list-style-image: url(../img/paint-bucket.svg);
+          }
+          &:nth-child(2) {
+            list-style-image: url(../img/choose-color.svg);
+          }
+          &:nth-child(4) {
+            list-style-image: url(../img/pencil.svg);
+          }
+          &:last-child {
+            list-style-image: url(../img/transform.svg);
+          }
+        }
+        .list-item.active {
+          background: rgba(138, 127, 127, 0.508);
+        }
+      }
+      hr {
+        position: absolute;
+        height: 1px;
+        left: 0%;
+        right: 0%;
+        top: 111px;
+        background: rgba(0, 0, 0, 0.12);
+      }
+    }
+    .blue-btn,
+    .red-btn,
+    .current-btn,
+    .prev-btn {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      width: 100%;
+      text-align: start;
+      background: none;
+      &:hover {
+        background: rgba(138, 127, 127, 0.308);
+      }
+    }
+    .bucket-btn,
+    .choose-color-btn,
+    .pencil-btn,
+    .transform-btn {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      width: 200px;
+      padding: 5px 5px 10px 5px;
+      text-align: start;
+      background: none;
+    }
+
+    .bucket-btn,
+    .choose-color-btn,
+    .pencil-btn {
+      &:hover {
+        background: rgba(138, 127, 127, 0.308);
+      }
+    }
+    &-block2 {
+      span {
+        border-radius: 50%;
+        width: 23px;
+        height: 23px;
+        background-color: red;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      label {
+        cursor: pointer;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .active {
+        background: rgba(138, 127, 127, 0.508);
+      }
+      &__list {
+        .list-item {
+          @include instrument();
+          &:first-child {
+            list-style-image: none;
+          }
+          &:nth-child(2) {
+            list-style-image: none;
+          }
+          &:nth-child(4) {
+            list-style-image: none;
+          }
+          &:last-child {
+            list-style-image: none;
+          }
+        }
+        padding-left: 20px;
+      }
+    }
+  }
+  &__canvas {
+    width: 515px;
+    height: 515px;
+    image-rendering: pixelated;
+
+    .input__container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      button {
+        font-family: 'FuturaBookC';
+        outline: none;
+        background: transparent;
+        padding: 8px 10px;
+        cursor: pointer;
+        border: 1px solid red;
+        &:hover {
+        }
+        background: coral;
+      }
+    }
+    input {
+      width: 300px;
+      height: 30px;
+      font-family: 'FuturaBookC';
+      font-size: 25px;
+    }
+    canvas {
+      border: 1px solid black;
+      width: 512px;
+      height: 512px;
+      background-color: #ffffff;
+      background-image: url(../img/canvasbg.png);
+      image-rendering: pixelated;
+    }
+  }
+  &__switcher {
+    display: flex;
+    flex-direction: column;
+    button {
+      cursor: pointer;
+      margin-top: 15px;
+      width: 100px;
+      padding: 10px 10px;
+      background: transparent;
+      outline: none;
+      border: 1px solid black;
+    }
+    .active {
+      background: red;
+    }
+    button:hover {
+      background: red;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .main {
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    &__instruments__container {
+      //   width: 100%;
+      height: 300px;
+      flex-direction: row;
+      justify-content: space-evenly;
+      &-block1,
+      &-block2 {
+        box-shadow: none;
+
+        // margin-bottom: 30px;
+      }
+    }
+    &__canvas {
+      align-self: center;
+    }
+    &__switcher {
+      margin-top: 70px;
+      margin-bottom: 20px;
+      flex-direction: row;
+      align-self: center;
+    }
+  }
+}
