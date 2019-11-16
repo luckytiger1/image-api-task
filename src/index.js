@@ -300,7 +300,7 @@ window.addEventListener('DOMContentLoaded', () => {
     pencil = true;
   }
   if (localStorage.getItem('currColorOld') === null) {
-    context.fillStyle = document.querySelector('.curr-color').style.background;
+    context.fillStyle = '#ff0000';
   }
 });
 document.querySelector('.grayscale-btn').addEventListener('click', () => {
