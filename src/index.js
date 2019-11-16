@@ -421,7 +421,7 @@ document.querySelector('#medium-canvas').addEventListener('click', () => {
 netlifyIdentity.on('login', () => {
   const outputText = document.querySelector('.login-text');
   const userName = netlifyIdentity.currentUser().user_metadata.full_name;
-  outputText.innerText = `Authenticated with GitHub. Access Token:  + ${userName}`;
+  outputText.innerText = ` Welcome ${userName}`;
 });
 
 document.querySelector('#large-canvas').addEventListener('click', () => {

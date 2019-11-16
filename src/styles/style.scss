@@ -26,6 +26,14 @@
     padding-left: 50px;
     flex-grow: 1;
   }
+  .login-text {
+    display: block;
+    font-family: 'FuturaBookC';
+    font-size: 22px;
+    font-weight: 500;
+    color: red;
+    margin-right: 20px;
+  }
   .login-link {
     a {
       display: block;
