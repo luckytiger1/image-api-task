@@ -219,6 +219,7 @@ function loadCanvas() {
 
   const currSize = localStorage.getItem('currSize');
   const currTool = localStorage.getItem('currTool');
+  console.log(currTool);
 
   showSize(currSize);
   showTool(currTool);
