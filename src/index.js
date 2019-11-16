@@ -421,7 +421,13 @@ document.querySelector('#medium-canvas').addEventListener('click', () => {
 netlifyIdentity.on('login', () => {
   const outputText = document.querySelector('.login-text');
   const userName = netlifyIdentity.currentUser().user_metadata.full_name;
-  outputText.innerText = ` Welcome ${userName}`;
+  outputText.style.display = 'block';
+  outputText.innerText = ` Welcome, ${userName}!`;
+});
+netlifyIdentity.on('logout', () => {
+  const outputText = document.querySelector('.login-text');
+  outputText.style.display = 'none';
+  console.log('Logged out');
 });
 
 document.querySelector('#large-canvas').addEventListener('click', () => {
