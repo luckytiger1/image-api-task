@@ -418,20 +418,12 @@ document.querySelector('#medium-canvas').addEventListener('click', () => {
   reSize(256, 256);
 });
 
-document.querySelector('.login-link').addEventListener('click', (e) => {
-  e.preventDefault();
-  let outputText = document.querySelector('.login-text');
-  const authenticator = new netlify.default({});
-  authenticator.authenticate(
-    { provider: 'github', scope: 'user' },
-    (err, data) => {
-      // eslint-disable-next-line no-unused-expressions
-      err
-        ? (outputText.innerText = `Error Authenticating with GitHub:  + ${err}`)
-        : (outputText.innerText = `Authenticated with GitHub. Access Token:  + ${data.tokens}`);
-    },
-  );
+netlifyIdentity.on('login', () => {
+  const outputText = document.querySelector('.login-text');
+  const userName = netlifyIdentity.currentUser().user_metadata.full_name;
+  outputText.innerText = `Authenticated with GitHub. Access Token:  + ${userName}`;
 });
+
 document.querySelector('#large-canvas').addEventListener('click', () => {
   sizex4 = false;
   sizex2 = false;
