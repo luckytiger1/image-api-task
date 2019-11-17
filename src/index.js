@@ -230,9 +230,6 @@ function loadCanvas() {
   img.onload = () => {
     context.drawImage(img, 0, 0);
   };
-  // prevCanvas = prevCanvas.split(',');
-  // const imgData = new ImageData(Uint8ClampedArray.from(prevCanvas), 512, 512);
-  // context.putImageData(imgData, 0, 0);
 }
 
 function grayScale() {
@@ -291,9 +288,6 @@ async function imageToCanvas(data) {
   };
 }
 window.addEventListener('DOMContentLoaded', () => {
-  console.log(localStorage.getItem('currSize'));
-  console.log(localStorage.getItem('currTool'));
-  console.log(localStorage.getItem('currColorOld'));
   if (localStorage.getItem('currSize') === null) {
     sizex4 = true;
   }
@@ -433,16 +427,18 @@ document.querySelector('#medium-canvas').addEventListener('click', () => {
   reSize(256, 256);
 });
 
+// eslint-disable-next-line no-undef
 netlifyIdentity.on('login', () => {
   const outputText = document.querySelector('.login-text');
+  // eslint-disable-next-line no-undef
   const userName = netlifyIdentity.currentUser().user_metadata.full_name;
   outputText.style.display = 'block';
   outputText.innerText = ` Welcome, ${userName}!`;
 });
+// eslint-disable-next-line no-undef
 netlifyIdentity.on('logout', () => {
   const outputText = document.querySelector('.login-text');
   outputText.style.display = 'none';
-  console.log('Logged out');
 });
 
 document.querySelector('#large-canvas').addEventListener('click', () => {
