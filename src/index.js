@@ -29,6 +29,7 @@ function reSize(w, h) {
   tempContext.drawImage(canvas, 0, 0);
   canvas.width = w;
   canvas.height = h;
+  context.imageSmoothingEnabled = false;
 
   context.drawImage(
     tempCanvas,
