@@ -421,14 +421,24 @@ netlifyIdentity.on('login', () => {
   const outputText = document.querySelector('.login-text');
   // eslint-disable-next-line no-undef
   const userName = netlifyIdentity.currentUser().user_metadata.full_name;
-  outputText.style.display = 'block';
-  outputText.innerText = ` Welcome, ${userName}!`;
+  async function getLogin() {
+    const response = await fetch('https://api.github.com/user', {
+      headers: {
+        Authorization: `token ${e08102e5d8e0a19a590ad44b2857b601c336fc8f}`,
+      },
+    });
+    const data = await response.json();
+    const login = data.login;
+    outputText.style.display = 'block';
+    outputText.innerText = ` Welcome, ${login}!`;
+  }
 });
 // eslint-disable-next-line no-undef
 netlifyIdentity.on('logout', () => {
   const outputText = document.querySelector('.login-text');
   outputText.style.display = 'none';
 });
+
 document.querySelector('#small-canvas').addEventListener('click', () => {
   sizex4 = true;
   sizex2 = false;
