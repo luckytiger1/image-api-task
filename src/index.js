@@ -292,13 +292,13 @@ async function imageToCanvas(data) {
 }
 canvas.addEventListener('mouseover', () => {
   if (pencil) {
-    canvas.style.cursor = "url('/src/img/pencil.svg'), auto";
+    canvas.style.cursor = "url('./src/img/pencil.svg'), auto";
   }
   if (bucket) {
-    canvas.style.cursor = "url('/src/img/paint-bucket.svg'), auto";
+    canvas.style.cursor = "url('./src/img/paint-bucket.svg'), auto";
   }
   if (colorPicker) {
-    canvas.style.cursor = "url('/src/img/choose-color.svg'), auto";
+    canvas.style.cursor = "url('./src/img/choose-color.svg'), auto";
   }
 });
 window.addEventListener('DOMContentLoaded', () => {
