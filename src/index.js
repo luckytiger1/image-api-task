@@ -1,4 +1,7 @@
 import './styles/style.scss';
+import pencilImg from './assets/img/pencil.svg';
+import bucketImg from './assets/img/paint-bucket.svg';
+import colorPickerImg from './assets/img/choose-color.svg';
 
 const canvas = document.querySelector('#canvas');
 const context = canvas.getContext('2d');
@@ -290,16 +293,15 @@ async function imageToCanvas(data) {
     }
   };
 }
-
 canvas.addEventListener('mouseover', () => {
   if (pencil) {
-    canvas.style.cursor = "url('./img/pencil.svg'), auto";
+    canvas.style.cursor = `url(${pencilImg}), auto`;
   }
   if (bucket) {
-    canvas.style.cursor = "url('./img/paint-bucket.svg'), auto";
+    canvas.style.cursor = `url(${bucketImg}), auto`;
   }
   if (colorPicker) {
-    canvas.style.cursor = "url('./img/choose-color.svg'), auto";
+    canvas.style.cursor = `url(${colorPickerImg}), auto`;
   }
 });
 window.addEventListener('DOMContentLoaded', () => {

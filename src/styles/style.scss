@@ -101,13 +101,13 @@
         .list-item {
           @include instrument();
           &:first-child {
-            list-style-image: url(../img/paint-bucket.svg);
+            list-style-image: url(../assets/img/paint-bucket.svg);
           }
           &:nth-child(2) {
-            list-style-image: url(../img/choose-color.svg);
+            list-style-image: url(../assets/img/choose-color.svg);
           }
           &:nth-child(4) {
-            list-style-image: url(../img/pencil.svg);
+            list-style-image: url(../assets/img/pencil.svg);
           }
           &:last-child {
             list-style-image: url(../img/transform.svg);
