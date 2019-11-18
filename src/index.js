@@ -4,9 +4,9 @@ const canvas = document.querySelector('#canvas');
 const context = canvas.getContext('2d');
 
 let currentColor;
-let sizex4;
-let sizex2;
 let sizex1;
+let sizex2;
+let sizex4;
 let pencil;
 let bucket;
 let colorPicker;
@@ -79,7 +79,6 @@ function draw(e, size) {
 function pickColor(event, size) {
   const x = event.offsetX;
   const y = event.offsetY;
-  console.log(x, y);
   const pixel = context.getImageData(x / size, y / size, size, size);
   const { data } = pixel;
   const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
