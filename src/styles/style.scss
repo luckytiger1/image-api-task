@@ -110,7 +110,7 @@
             list-style-image: url(../assets/img/pencil.svg);
           }
           &:last-child {
-            list-style-image: url(../img/transform.svg);
+            list-style-image: url(../assets/img/transform.svg);
           }
         }
         .list-item.active {
@@ -216,8 +216,6 @@
         padding: 8px 10px;
         cursor: pointer;
         border: 1px solid red;
-        &:hover {
-        }
         background: coral;
       }
     }
@@ -232,7 +230,7 @@
       width: 512px;
       height: 512px;
       background-color: #ffffff;
-      background-image: url(../img/canvasbg.png);
+      background-image: url(../assets/img/canvasbg.png);
       image-rendering: pixelated;
     }
   }
