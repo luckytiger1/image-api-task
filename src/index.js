@@ -20,12 +20,12 @@ function fillCanvas() {
   context.fillStyle = document.querySelector('.curr-color').style.background;
   context.fillRect(0, 0, 512, 512);
 }
+const tempCanvas = document.createElement('canvas');
+const tempContext = tempCanvas.getContext('2d');
 
 function reSize(w, h) {
-  const tempCanvas = document.createElement('canvas');
   tempCanvas.width = canvas.width;
   tempCanvas.height = canvas.height;
-  const tempContext = tempCanvas.getContext('2d');
   tempContext.drawImage(canvas, 0, 0);
   canvas.width = w;
   canvas.height = h;
@@ -44,7 +44,6 @@ function reSize(w, h) {
   );
   context.fillStyle = document.querySelector('.curr-color').style.background;
 }
-context.imageSmoothingEnabled = false;
 function drawLine(x0, x1, y0, y1, size) {
   const dx = Math.abs(x1 - x0);
   const dy = Math.abs(y1 - y0);
@@ -77,10 +76,11 @@ function draw(e, size) {
   context.fillRect(lastX * size, lastY * size, size, size);
   context.fill();
 }
-function pickColor(event) {
+function pickColor(event, size) {
   const x = event.offsetX;
   const y = event.offsetY;
-  const pixel = context.getImageData(x, y, 1, 1);
+  console.log(x, y);
+  const pixel = context.getImageData(x / size, y / size, size, size);
   const { data } = pixel;
   const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
   document.querySelector('.curr-color').style.background = rgba;
@@ -246,10 +246,14 @@ function grayScale() {
   context.putImageData(imageData, 0, 0);
 }
 async function getImageLink(data) {
-  const url = `https://api.unsplash.com/photos/random?query=town,${data}&client_id=8f315502f9333160e60fe214ca40e5e86de760084a061dea3f74ebfb92c79b77`;
-  const response = await fetch(url);
-  const link = await response.json();
-  return link;
+  try {
+    const url = `https://api.unsplash.com/photos/random?query=town,${data}&client_id=8f315502f9333160e60fe214ca40e5e86de760084a061dea3f74ebfb92c79b77`;
+    const response = await fetch(url);
+    const link = await response.json();
+    return link;
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 async function imageToCanvas(data) {
   const image = new Image();
@@ -325,7 +329,7 @@ canvas.addEventListener('mousedown', (e) => {
       fillCanvas();
     }
     if (colorPicker) {
-      pickColor(e);
+      pickColor(e, 4);
     }
   }
   if (sizex2) {
@@ -338,7 +342,7 @@ canvas.addEventListener('mousedown', (e) => {
       fillCanvas();
     }
     if (colorPicker) {
-      pickColor(e);
+      pickColor(e, 2);
     }
   }
   if (sizex1) {
@@ -351,7 +355,7 @@ canvas.addEventListener('mousedown', (e) => {
       fillCanvas();
     }
     if (colorPicker) {
-      pickColor(e);
+      pickColor(e, 1);
     }
   }
 });
@@ -399,34 +403,6 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseout', () => {
   isDrawing = false;
 });
-document.querySelector('#small-canvas').addEventListener('click', () => {
-  sizex4 = true;
-  sizex2 = false;
-  sizex1 = false;
-  localStorage.setItem('canvasW', 128);
-  localStorage.setItem('canvasH', 128);
-  const sizeBtn = document.querySelectorAll('.size-btn');
-  [].forEach.call(sizeBtn, (el) => {
-    el.classList.remove('active');
-  });
-  document.querySelector('#small-canvas').classList.add('active');
-  reSize(128, 128);
-});
-document.querySelector('#medium-canvas').addEventListener('click', () => {
-  sizex4 = false;
-  sizex2 = true;
-  sizex1 = false;
-  localStorage.setItem('canvasW', 256);
-  localStorage.setItem('canvasH', 256);
-
-  const sizeBtn = document.querySelectorAll('.size-btn');
-  [].forEach.call(sizeBtn, (el) => {
-    el.classList.remove('active');
-  });
-  document.querySelector('#medium-canvas').classList.add('active');
-  reSize(256, 256);
-});
-
 // eslint-disable-next-line no-undef
 netlifyIdentity.on('login', () => {
   const outputText = document.querySelector('.login-text');
@@ -440,6 +416,36 @@ netlifyIdentity.on('logout', () => {
   const outputText = document.querySelector('.login-text');
   outputText.style.display = 'none';
 });
+document.querySelector('#small-canvas').addEventListener('click', () => {
+  sizex4 = true;
+  sizex2 = false;
+  sizex1 = false;
+
+  localStorage.setItem('canvasW', 128);
+  localStorage.setItem('canvasH', 128);
+  const sizeBtn = document.querySelectorAll('.size-btn');
+  [].forEach.call(sizeBtn, (el) => {
+    el.classList.remove('active');
+  });
+  document.querySelector('#small-canvas').classList.add('active');
+  reSize(128, 128);
+});
+document.querySelector('#medium-canvas').addEventListener('click', () => {
+  sizex4 = false;
+  sizex2 = true;
+  sizex1 = false;
+
+  localStorage.setItem('canvasW', 256);
+  localStorage.setItem('canvasH', 256);
+
+  const sizeBtn = document.querySelectorAll('.size-btn');
+  [].forEach.call(sizeBtn, (el) => {
+    el.classList.remove('active');
+  });
+  document.querySelector('#medium-canvas').classList.add('active');
+
+  reSize(256, 256);
+});
 
 document.querySelector('#large-canvas').addEventListener('click', () => {
   sizex4 = false;
@@ -452,6 +458,7 @@ document.querySelector('#large-canvas').addEventListener('click', () => {
     el.classList.remove('active');
   });
   document.querySelector('#large-canvas').classList.add('active');
+
   reSize(512, 512);
 });
 document.querySelector('.bucketBtn').addEventListener('click', () => {
