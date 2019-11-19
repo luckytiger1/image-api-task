@@ -424,7 +424,7 @@ async function setLogin() {
     },
   });
   const data = await response.json();
-  const login = data.login;
+  const { login } = data;
   outputText.style.display = 'block';
   outputText.innerText = ` Welcome, ${login}!`;
 }
@@ -432,7 +432,6 @@ async function setLogin() {
 netlifyIdentity.on('login', () => {
   // eslint-disable-next-line no-undef
   setLogin();
-  const userName = netlifyIdentity.currentUser().user_metadata.full_name;
 });
 // eslint-disable-next-line no-undef
 netlifyIdentity.on('logout', () => {
